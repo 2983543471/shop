@@ -1,0 +1,41 @@
+<form action="" method="post">
+	<input id="username" type="text" placeholder="请输入用户名"><br>
+	<input id="password" type="password" placeholder="请输入密码"><br>
+	<input id="login" type="button" value="登录">
+</form>
+
+<script>
+	$(function () {
+		$('#login').click(function () {
+			var username = $('#username').val();
+			var password = $('#password').val();
+			if (!username || !password) {
+				alert('请将信息填写完整');
+				return false;
+			}
+			$.ajax({
+				type : 'post',
+				url : '/index/login/login',
+				data : {
+					username : username,
+					password : password
+				},
+				dataType : 'json',
+				success : function (data) {
+					console.log(data);
+					if (data.status) {
+						alert(data.message);
+						window.location = data.data;
+					} else {
+						alert(data.message);
+					}
+				},
+				erorr : function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			})
+		})
+	})
+</script>
