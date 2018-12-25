@@ -9,11 +9,7 @@ class IndexController extends BaseController
 {
 	public function index()
 	{
-		$username = session('username');
-		$password = session('password');
-
-
-		dump($username, $password);
 		return view();
 	}
+
 }
