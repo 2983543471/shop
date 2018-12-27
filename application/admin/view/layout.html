@@ -1,3 +1,37 @@
 {include file='common/header'}
-{__CONTENT__}
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">RBAC</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">首页<span class="sr-only">(current)</span></a></li>
+			</ul>
+			<p class="navbar-text navbar-right" style="padding-right: 50px;"><a href="{:url('login/second')}" class="navbar-link">{$Think.SESSION.username|default='登录'}</a></p>
+			<p class="navbar-text navbar-right"><a href="{:url('login/loginOut')}" class="navbar-link">{$Think.SESSION.username ? '退出登录' : ''}</a></p>
+			{/if}
+		</div>
+	</div>
+</nav>
+
+<div class="row" style="margin-top: 50px;">
+	<div class="container-fluid">
+		<div class="col-md-2 col-sm-2 col-lg-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li class="active"><a href="{:url('test/first')}">权限测试页面1</a></li>
+				<li><a href="{:url('test/second')}">权限测试页面2</a></li>
+				<li><a href="{:url('test/third')}">权限测试页面3</a></li>
+				<li><a href="{:url('test/fourth')}">权限测试页面4</a></li>
+				<li><a href="{:url('test/fifth')}">权限测试页面5</a></li>
+				<li><a href="{:url('adminManagement/index')}">用户管理</a></li>
+				<li><a href="javascript:;">角色管理</a></li>
+				<li><a href="javascript:;">权限管理</a></li>
+			</ul>
+		</div>
+		<div class="col-md-10 col-sm-10 col-lg-10">
+			{__CONTENT__}
+		</div>
+	</div>
+</div>
 {include file='common/footer'}
