@@ -1,0 +1,56 @@
+<form class="form-horizontal" style="margin-top: 100px;" action="" method="post">
+	<div class="form-group">
+		<label for="character_list">角色</label>
+		<select id="character_list" class="form-control" {if $list.name} disabled="disabled" {/if}>
+			<option value="-1">{$list.name|default='请选择用户所属角色'}</option>
+		{foreach $role_list as $v}
+			<option value="{$v.id}">{$v.name}</option>
+		{/foreach}
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="permission_list">权限列表</label>
+		<select id="permission_list" class="form-control">
+			<option value="-1">请选择权限</option>
+			{foreach $access_list as $k => $v}
+			<option value="{$v.id}">{$v.title}</option>
+			{/foreach}
+		</select>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button id="submit" type="button" class="btn btn-default">提交</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	$(function () {
+		$('#submit').click(function () {
+			var character = {$list.id};
+			var permission = $('#permission_list').val();
+			$.ajax({
+				type: 'post',
+				url: "{:url('characterManagement/editCharacter')}",
+				data: {
+					character : character,
+					permission :permission
+				},
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+					if (data.status) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrow) {
+					console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrow);
+				}
+			})
+		})
+	})
+</script>

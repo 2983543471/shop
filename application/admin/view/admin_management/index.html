@@ -1,15 +1,27 @@
 <a href="{:url('adminManagement/addPage')}" class="btn btn-info">添加管理员</a>
 <div class="table-responsive">
-	<table class="table table-bordered">
+	<table class="table table-bordered" style="text-align: center;">
 		<tr>
 			<td>ID</td>
 			<td>用户名</td>
-			<td>角色</td>
+			<td>是否是管理员</td>
+			<td>更新时间</td>
+			<td>创建时间</td>
+			<td>操作</td>
 		</tr>
+		{foreach $list as $v}
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>{$v.id}</td>
+			<td>{$v.username}</td>
+			<td>{$v.is_admin ? '是' : '否'}</td>
+			<td>{$v.update_time|date='Y-m-d H:i:s'}</td>
+			<td>{$v.create_time|date='Y-m-d H:i:s'}</td>
+			{if !$v.is_admin}
+			<td><a href="{:url('adminManagement/addPage?id='.$v['id'])}">编辑</a></td>
+			{else}
+			<td>-</td>
+			{/if}
 		</tr>
+		{/foreach}
 	</table>
 </div>

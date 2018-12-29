@@ -15,7 +15,8 @@ class User extends Validate
 	protected $rule = [
 		'username'         => 'require',
 		'password'         => 'require',
-		'confirm_password' => 'require|confirm:password'
+		'confirm_password' => 'require|confirm:password',
+		'character'        => 'require|in:1,2,3'
 	];
 
 	protected $message = [
@@ -23,11 +24,15 @@ class User extends Validate
 		'password.require'         => '密码必须',
 		'confirm_password.require' => '重复密码密码必须',
 		'confirm_password.confirm' => '两次密码不一样',
+		'character.require'        => '角色名称必须选择',
+		'character.in'             => '非法角色名称'
 	];
 
 	protected $scene = [
 		'register' => ['username', 'password', 'confirm_password'],
 		'login'    => ['username', 'password'],
+		'addAdmin' => ['username', 'password', 'character'],
+		'addCharacter' => ['character'],
 	];
 
 }

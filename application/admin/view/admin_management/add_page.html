@@ -1,0 +1,95 @@
+<form class="form-horizontal" style="margin-top: 10px;" action="{:url('adminManagement/addAdmin')}" method="post">
+	<div class="form-group">
+		<label for="username" class="col-sm-2 control-label">用户名</label>
+		<div class="col-sm-10">
+			<input type="text" id="username" class="form-control" name="username" placeholder="用户名"
+				   value="{$list.username|default=''}" {if $list.username} disabled {/if}>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="password" class="col-sm-2 control-label">密码</label>
+		<div class="col-sm-10">
+			<input type="password" id="password" class="form-control" name="password" placeholder="账号密码">
+		</div>
+	</div>
+	<div class="form-group">
+		{foreach $role_list as $v}
+		<div class="col-lg-2">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<input type="checkbox" aria-label="...">
+				</span>
+				<input type="text" class="form-control" aria-label="..." value="{$v.name}" disabled>
+				<input type="hidden" value="{$v.id}">
+			</div>
+		</div>
+		{/foreach}
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			{if $list}
+			<button id="edit" type="button" class="btn btn-default">提交</button>
+			{else}
+			<button id="add" type="button" class="btn btn-default">提交</button>
+			{/if}
+		</div>
+	</div>
+</form>
+
+<script>
+	$(function () {
+		// 添加管理员
+		$('#add').click(function () {
+			var username = $('#username').val();
+			var password = $('#password').val();
+			$.ajax({
+				type: 'post',
+				url: "{:url('adminManagement/addAdmin')}",
+				data: {
+					username: username,
+					password: password,
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.status) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrow) {
+					/*console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrow);*/
+				}
+			})
+		});
+
+		// 修改管理员
+		$('#edit').click(function () {
+			var username = {$list.id};
+			var character = $('#character_list').val();
+			$.ajax({
+				type: 'post',
+				url: "{:url('adminManagement/editAdmin')}",
+				data: {
+					username: username,
+					character: character
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.status) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrow) {
+					/*console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrow);*/
+				}
+			})
+		})
+	})
+</script>

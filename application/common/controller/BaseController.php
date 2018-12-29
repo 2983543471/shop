@@ -15,5 +15,6 @@ class BaseController extends Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (!session('username')) $this->error('请登录后操作', '/admin/login/second');
 	}
 }

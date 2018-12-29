@@ -1,0 +1,59 @@
+<form class="form-horizontal" style="margin-top: 100px;" action="" method="post">
+	<div class="form-group">
+		<label for="character_list">角色</label>
+		<select id="character_list" class="form-control">
+			<option value="-1">请选择用户所属角色</option>
+			<option value="1">访客</option>
+			<option value="2">客服</option>
+			<option value="3">管理员</option>
+		</select>
+	</div>
+	<!--<div class="form-group">-->
+		<!--<label for="permission_list">权限列表</label>-->
+		<!--<select id="permission_list" class="form-control">-->
+			<!--<option value="-1">请选择该角色的权限</option>-->
+			<!--<option value="1">测试页面1</option>-->
+			<!--<option value="2">测试页面2</option>-->
+			<!--<option value="3">测试页面3</option>-->
+			<!--<option value="4">测试页面4</option>-->
+			<!--<option value="5">测试页面5</option>-->
+			<!--<option value="6">用户管理</option>-->
+			<!--<option value="7">角色管理</option>-->
+			<!--<option value="8">权限管理</option>-->
+		<!--</select>-->
+	<!--</div>-->
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button id="submit" type="button" class="btn btn-default">提交</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	$(function () {
+		$('#submit').click(function () {
+			var character = $('#character_list').val();
+			$.ajax({
+				type: 'post',
+				url: "{:url('characterManagement/addCharacter')}",
+				data: {
+					character : character,
+				},
+				dataType: 'json',
+				success: function (data) {
+					if (data.status) {
+						alert(data.message);
+					} else {
+						alert(data.message);
+
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrow) {
+					console.log(XMLHttpRequest);
+					console.log(textStatus);
+					console.log(errorThrow);
+				}
+			})
+		})
+	})
+</script>
