@@ -175,9 +175,7 @@ All rights reserved。
 ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
 更多细节参阅 [LICENSE.txt](LICENSE.txt)
-<<<<<<< HEAD
-=======
-=======
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/2983543471/shop/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
