@@ -1,4 +1,3 @@
-![](https://box.kancloud.cn/5a0aaa69a5ff42657b5c4715f3d49221) 
 
 ThinkPHP 5.1（LTS版本） —— 12载初心，你值得信赖的PHP框架
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/top-think/framework/badges/quality-score.png?b=5.1)](https://scrutinizer-ci.com/g/top-think/framework/?branch=5.1)
@@ -176,3 +175,45 @@ All rights reserved。
 ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
 更多细节参阅 [LICENSE.txt](LICENSE.txt)
+<<<<<<< HEAD
+=======
+=======
+## Welcome to GitHub Pages
+
+You can use the [editor on GitHub](https://github.com/2983543471/shop/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
+### Markdown
+
+Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+```markdown
+Syntax highlighted code block
+
+# Header 1
+## Header 2
+### Header 3
+
+- Bulleted
+- List
+
+1. Numbered
+2. List
+
+**Bold** and _Italic_ and `Code` text
+
+[Link](url) and ![Image](src)
+```
+
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
+### Jekyll Themes
+
+Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/2983543471/shop/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+
+### Support or Contact
+
+Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+>>>>>>> 65061cfb2c56ae2957f6b3c2666e37d07bb29e1a
+>>>>>>> ddd36a84f0a123b2b0a04d4713efa28245b1b06b

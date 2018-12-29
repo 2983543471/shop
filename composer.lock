@@ -578,7 +578,11 @@
                 "orm",
                 "thinkphp"
             ],
+<<<<<<< HEAD
             "time": "2018-11-11T01:17:33+00:00"
+=======
+            "time": "2018-12-11T05:17:32+00:00"
+>>>>>>> ddd36a84f0a123b2b0a04d4713efa28245b1b06b
         },
         {
             "name": "topthink/think-installer",
