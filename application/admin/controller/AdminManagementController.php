@@ -67,15 +67,14 @@ class AdminManagementController extends BaseController
 			if (!$username || !$password || !$character) {
 				return json(['status' => -1, 'message' => '请将信息填写完整']);
 			}
-			$validate_data = [
+			/*$validate_data = [
 				'username'  => $username,
 				'password'  => $password,
-				'character' => $character
 			];
 			$validate_res = $this->validate($validate_data, 'app\validate\User.addAdmin');
 			if ($validate_res !== true) {
 				return json(['status' => -1, 'message' => $validate_res]);
-			}
+			}*/
 			$user_string = config('login.user_string');
 			$admin_data = [
 				'username'    => $username,
@@ -83,32 +82,41 @@ class AdminManagementController extends BaseController
 				'user_string' => $user_string,
 				'create_time' => time()
 			];
-			$admin_res = $this->admin->insert($admin_data);
-			if (!$admin_res) {
-				return json(['status' => -1, 'message' => '添加失败']);
-			}
+			$admin_id = $this->admin->insertGetId($admin_data);
+			if (!$admin_id) return json(['status' => -1, 'message' => '添加失败']);
+			$admin_role_data = [
+				'admin_id' => $admin_id,
+				'role_id'  => implode($character, ','),
+				'create_time' => time()
+			];
+			$admin_role_res = $this->admin_role->save($admin_role_data);
+			if (!$admin_role_res) return json(['status' => 0, 'message' => '添加失败']);
 			return json(['status' => 1, 'message' => '添加成功']);
 		} catch (\Exception $e) {
-			return null;
+			return json(['status' => 0, 'message' => '操作异常', 'error' => $e->getMessage()]);
 		}
 	}
 
+	/**
+	 * 修改账号
+	 * @return string|\think\response\Json
+	 */
 	public function editAdmin()
 	{
 		try {
 			$admin_id = $this->request->post('username', '', 'intval');
-			$role_id = $this->request->post('character', '', 'intval');
+			$role_id = $this->request->post('character', '');
 			if (!$admin_id || !$role_id) return json(['status' => 0, 'message' => '请将信息填写完整']);
 			$data = [
 				'admin_id'    => $admin_id,
-				'role_id'     => $role_id,
+				'role_id'     => implode($role_id, ','),
 				'create_time' => time()
 			];
 			$res = $this->admin_role->save($data);
 			if (!$res) return json(['status' => 0, 'message' => '修改失败']);
 			return json(['status' => 1, 'message' => '修改成功']);
 		} catch (\Exception $e) {
-			return null;
+			return $e->getMessage();
 		}
 	}
 
