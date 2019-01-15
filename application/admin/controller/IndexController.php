@@ -9,8 +9,10 @@
 namespace app\admin\controller;
 
 use app\common\controller\BaseController;
+use think\Controller;
+use think\facade\Session;
 
-class IndexController extends BaseController
+class IndexController extends Controller
 {
 	public function __construct()
 	{

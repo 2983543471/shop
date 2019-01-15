@@ -49,12 +49,14 @@ class LoginController extends Controller
 			$user_info = $this
 				->admin
 				->where('username', $data['username'])
-				->field('password, user_string')
+				->field('password, user_string, id')
 				->find();
 			$md5_password = md5($data['password'] . $user_info['user_string']);
 			if ($md5_password != $user_info['password']) return json(['status' => -1, 'message' => '账号或密码错误']);
+			$value = base64_encode($user_info['id'] . '|' . $_SERVER['REMOTE_ADDR']);
+			setcookie('token', $value, time() + 300, '/');
+			Session::set('id', $user_info['id']);
 			Session::set('username', $username);
-			Session::set('password', $password);
 			return json(['status' => 1, 'message' => '登录成功，即将跳到首页', 'data' => 'http://shop.com/admin/index/index']);
 		} catch (\Exception $e) {
 			return $e->getMessage();
